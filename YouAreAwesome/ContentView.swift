@@ -3,13 +3,15 @@
 //  YouAreAwesome
 //
 //  Created by Charley Conroy on 1/8/23.
-//
+// <3 Brenden
 
 import SwiftUI
 
 struct ContentView: View {
-    @State private var messageString = "When the Genius Bar needs help they call you!"
-    
+    @State private var messageString = ""
+    @State private var imageName = ""
+    @State private var messageNumber = 0
+    @State private var imageNumber = 0
     var body: some View {
         //        ZStack {
         //            Rectangle()
@@ -18,20 +20,41 @@ struct ContentView: View {
         
         //        GeometryReader {geometry in
         VStack (spacing: 0){
-//            Group {
-//                Text("I am a Text View")
-//                Text("I am a Text View")
-//                Text("I am a Text View")
-//                Text("I am a Text View")
-//                Text("I am a Text View")
-//                Text("I am a Text View")
-//                Text("I am a Text View")
-//                Text("I am a Text View")
-//                Text("I am a Text View")
-//                Text("I am a Text View")
-//            }
-//            .font(.title)
-//            .fontWeight(.heavy)
+            
+            Image(imageName)
+                .resizable()
+                .scaledToFit()
+                .cornerRadius(30)
+                .shadow(radius: 30)
+                .padding()
+            
+            Spacer()
+            
+            //            Image(systemName: "speaker.wave.2", variableValue: 0.0)
+            //                .resizable()
+            //                .scaledToFit()
+            //                .symbolRenderingMode(.multicolor)
+            //                .padding()
+            //                .background(Color(hue: 0.521, saturation: 0.299, brightness: 0.958))
+            //                .cornerRadius(30)
+            //                .shadow(radius: 30, x: 20, y: 20)
+            //                .overlay(RoundedRectangle(cornerRadius: 30).stroke(.teal, lineWidth: 1))
+            //                .padding()
+            
+            //            Group {
+            //                Text("I am a Text View")
+            //                Text("I am a Text View")
+            //                Text("I am a Text View")
+            //                Text("I am a Text View")
+            //                Text("I am a Text View")
+            //                Text("I am a Text View")
+            //                Text("I am a Text View")
+            //                Text("I am a Text View")
+            //                Text("I am a Text View")
+            //                Text("I am a Text View")
+            //            }
+            //            .font(.title)
+            //            .fontWeight(.heavy)
             
             //                Text("You Have Skills!")
             //                    .font(.largeTitle)
@@ -77,25 +100,41 @@ struct ContentView: View {
             //                        .fill(.indigo)
             //                        .frame(width:geometry.size.width * (2/3), height:1)
             
-            HStack {
-                Button("Awesome!") {
-                    //This is the action performed when the Awesome button is pressed
-                    messageString = "You Are Awesome!"
+            
+            Button("Show Message") {
+                let messages = ["You Are Awesome!",
+                                "You Are Great!",
+                                "You Are Fantastic!",
+                                "You Are A Genius!",
+                                "You Make Me Smile"]
+                
+                //This is the action performed when the button is pressed
+                messageString = messages[messageNumber]
+                messageNumber+=1
+                if messageNumber == messages.count {
+                    messageNumber = 0
                 }
-                .buttonStyle(.borderedProminent)
-                
-                Spacer()
-                
-                //                    Divider()
-                //                        .padding()
-                
-                Button("Great") {
-                    //This is the action performed when the Great button is pressed
-                    messageString = "You Are Great!"
+                //TODO: - update the imageName variable -
+                imageName = "image\(imageNumber)"
+                imageNumber+=1
+                if imageNumber > 9 {
+                    imageNumber = 0
                 }
-                .buttonStyle(.borderedProminent)
-                
+                print(imageNumber)
             }
+            .buttonStyle(.borderedProminent)
+            
+            //                Spacer()
+            //
+            //                //                    Divider()
+            //                //                        .padding()
+            //
+            //                Button("Great") {
+            //                    //This is the action performed when the Great button is pressed
+            //                    messageString = "You Are Great!"
+            //                }
+            //                .buttonStyle(.borderedProminent)
+            
             //            .border(.purple, width: 5)
             .padding()
             //            .tint(Color("Vermillion"))
